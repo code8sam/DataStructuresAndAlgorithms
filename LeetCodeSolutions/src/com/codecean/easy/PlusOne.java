@@ -1,0 +1,33 @@
+package com.codecean.easy;
+
+import java.util.Arrays;
+
+public class PlusOne {
+	
+	public static void main(String[]args) {
+		
+		int [] digits = {1,2,3};
+		
+		if(digits[digits.length-1]>=0 && digits[digits.length-1]<9) {
+			
+			digits[digits.length-1]+=1;
+			
+		}else if(digits[digits.length-1]==9) {
+			
+			if(digits[0]>=0 && digits[0]<9) {
+				
+				digits[digits.length-1]=0;
+				digits[0]+=1;
+				
+			}else if(digits[0]>=9) {
+				
+				// implementation pending ...
+				
+			}
+			
+		}
+		
+		System.out.println(Arrays.toString(digits));
+	}
+
+}
