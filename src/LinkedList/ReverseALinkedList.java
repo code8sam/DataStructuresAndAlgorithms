@@ -172,19 +172,30 @@ public class ReverseALinkedList {
             return head;
         }
 
+//        public static Node reverse(Node head){
+//            if(head==null){
+//                return head;
+//            }
+//            Node current = head;
+//            Node previous = null;
+//            Node next = null;
+//            while(current!=null){
+//                next=current.next;
+//                current.next=previous;
+//                previous=current;
+//                current=next;
+//            }
+//            return previous;
+//        }
+
+        // reverse using recursion
         public static Node reverse(Node head){
-            if(head==null){
+            if(head==null || head.next==null){
                 return head;
             }
-            Node current = head;
-            Node previous = null;
-            Node next = null;
-            while(current!=null){
-                next=current.next;
-                current.next=previous;
-                previous=current;
-                current=next;
-            }
+            Node previous = reverse(head.next);
+            head.next.next = head;
+            head.next = null;
             return previous;
         }
     }
