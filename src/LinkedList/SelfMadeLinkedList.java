@@ -197,18 +197,27 @@ public class SelfMadeLinkedList {
         }
 
         // mid of a linkedList
+//        public static Node middleNode(Node head){
+//            int count = length(head)/2;
+//            Node current = head;
+//            int i =0;
+//            while(current!=null){
+//                if(i==count){
+//                    return current;
+//                }
+//                current = current.next;
+//                i++;
+//            }
+//            return current;
+//        }
         public static Node middleNode(Node head){
-            int count = length(head)/2;
-            Node current = head;
-            int i =0;
-            while(current!=null){
-                if(i==count){
-                    return current;
-                }
-                current = current.next;
-                i++;
+            Node slow = head;
+            Node fast = head;
+            while(fast!=null && fast.next!=null){
+                slow = slow.next;
+                fast = fast.next.next;
             }
-            return current;
+            return slow;
         }
     }
 }
