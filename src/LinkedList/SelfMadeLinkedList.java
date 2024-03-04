@@ -1,9 +1,6 @@
 package LinkedList;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class ReverseALinkedList {
+public class SelfMadeLinkedList {
     public static void main(String[] args) {
         // create a head node
         LinkedList.Node head = new LinkedList.Node(1);
@@ -197,6 +194,21 @@ public class ReverseALinkedList {
             head.next.next = head;
             head.next = null;
             return previous;
+        }
+
+        // mid of a linkedList
+        public static Node middleNode(Node head){
+            int count = length(head)/2;
+            Node current = head;
+            int i =0;
+            while(current!=null){
+                if(i==count){
+                    return current;
+                }
+                current = current.next;
+                i++;
+            }
+            return current;
         }
     }
 }
