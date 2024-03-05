@@ -38,6 +38,13 @@ public class SelfMadeLinkedList {
         // length of the LL
         int length = LinkedList.length(head);
         System.out.println("Length of the linkedlist is "+length);
+        // mid of the LL
+        LinkedList.Node ans = LinkedList.middleNode(head);
+        System.out.println("mid node of this LL is : "+ans.data);
+        // merge two LL
+        LinkedList.Node mergeAns = LinkedList.mergeTwoLists(head, head);
+        LinkedList.display(mergeAns);
+
     }
     public class LinkedList {
         public static class  Node {
@@ -218,6 +225,39 @@ public class SelfMadeLinkedList {
                 fast = fast.next.next;
             }
             return slow;
+        }
+
+        public static Node mergeTwoLists(Node list1, Node list2){
+            Node prevHead = new Node(-1);
+            Node prev = prevHead;
+
+            while(list1!=null && list2!=null){
+                if(list1.data <= list2.data){
+                    prev.next = list1;
+                    list1 = list1.next;
+                }else {
+                    prev.next = list2;
+                    list2 = list2.next;
+                }
+                prev = prev.next;
+            }
+            prev.next = list1 == null ? list2:list1;
+            return prevHead.next;
+        }
+
+        public static Node getIntersectionNode(Node head1, Node head2){
+            Node current1 = head1;
+            Node current2 = head2;
+
+            // Iterate through both lists until they are equal or reach the end
+            while (current1 != current2) {
+                // If either list reaches the end, move to the other list
+                current1 = (current1 == null) ? head2 : current1.next;
+                current2 = (current2 == null) ? head1 : current2.next;
+            }
+
+            // Return the intersection node (or null if no intersection)
+            return current1;
         }
     }
 }
