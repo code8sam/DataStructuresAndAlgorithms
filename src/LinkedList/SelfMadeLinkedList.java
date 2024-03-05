@@ -245,19 +245,50 @@ public class SelfMadeLinkedList {
             return prevHead.next;
         }
 
-        public static Node getIntersectionNode(Node head1, Node head2){
-            Node current1 = head1;
-            Node current2 = head2;
+//        public static Node getIntersectionNode(Node head1, Node head2){
+//            Node current1 = head1;
+//            Node current2 = head2;
+//
+//            // Iterate through both lists until they are equal or reach the end
+//            while (current1 != current2) {
+//                // If either list reaches the end, move to the other list
+//                current1 = (current1 == null) ? head2 : current1.next;
+//                current2 = (current2 == null) ? head1 : current2.next;
+//            }
+//
+//            // Return the intersection node (or null if no intersection)
+//            return current1;
+//        }
 
-            // Iterate through both lists until they are equal or reach the end
-            while (current1 != current2) {
-                // If either list reaches the end, move to the other list
-                current1 = (current1 == null) ? head2 : current1.next;
-                current2 = (current2 == null) ? head1 : current2.next;
+        // intersection of two linkedlists : FAST RUNNER APPROACH
+
+        public static Node getIntersectionNode(Node head1, Node head2){
+
+            // Calculate the lengths of both linked lists
+            int length1 = length(head1);
+            int length2 = length(head2);
+
+            // Move the pointer of the longer list forward by the difference in lengths
+            while (length1 > length2) {
+                head1 = head1.next;
+                length1--;
             }
 
-            // Return the intersection node (or null if no intersection)
-            return current1;
+            while (length2 > length1) {
+                head2 = head2.next;
+                length2--;
+            }
+
+            // Iterate through both lists simultaneously using two pointers until they meet
+            while (head1 != null && head2 != null) {
+                if (head1 == head2) {
+                    return head1; // Intersection found
+                }
+                head1 = head1.next;
+                head2 = head2.next;
+            }
+
+            return null; // No intersection found
         }
     }
 }
