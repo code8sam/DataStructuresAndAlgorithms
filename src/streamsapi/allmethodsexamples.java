@@ -20,5 +20,11 @@ public class allmethodsexamples {
         String sentence = "Hello World";
         long count = sentence.chars().filter(x -> x == 'l').count();
         System.out.println(count);
+        List<String> sentences = Arrays.asList("Java is great", "Streams are powerful");
+        List<String> words = sentences.stream()
+                // Split into words
+                .flatMap(sentence1 -> Arrays.stream(sentence1.split(" ")))
+                .collect(Collectors.toList());
+        System.out.println(words);
     }
 }
